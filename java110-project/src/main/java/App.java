@@ -5,9 +5,40 @@ import java.util.Scanner;
  */
 public class App {
     
-        static String[] names = new String[100];
-        static String[] emails = new String[100];
-        static String[] passwords = new String[100];
+    static class Member {
+        protected String name;
+        protected String email;
+        protected String password;
+        
+
+        @Override
+        public String toString() {
+            return "Member [name=" + name + ", email=" + email + ", password=" + password + "]";
+        }
+        
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public String getEmail() {
+            return email;
+        }
+        public void setEmail(String email) {
+            this.email = email;
+        }
+        public String getPassword() {
+            return password;
+        }
+        public void setPassword(String password) {
+            this.password = password;
+        }
+        
+        
+    }
+    
+        static Member[] members = new Member[100];
         
         static int index = 0;
         
@@ -28,23 +59,28 @@ public class App {
     
     static void printMembers() {
         for (int i = 0; i < index; i++)
-        System.out.printf("%s, %s, %s\n",names[index],emails[index],passwords[index]);
+        System.out.printf("%s, %s, %s\n",members[i].getName(),members[i].getEmail(),members[i].getPassword());
 
     }
     
     static void inputMembers() {
         //2) 사용자로부터 회원 정보 입력받기
         while (true) {
+            //members[index] = new Member();
+            Member m = new Member();
+            
             System.out.println("이름?");
-            names[index] = keyIn.nextLine();
+            m.setName(keyIn.nextLine());
             
             System.out.println("이메일?");
-            emails[index] = keyIn.nextLine();
+            m.setEmail(keyIn.nextLine());
             
             System.out.println("암호?");
-            passwords[index] = keyIn.nextLine();
+            m.setPassword(keyIn.nextLine());
             
-            index++;
+            members[index++] = m;
+            
+            //index++;
             
             System.out.println("계속하시겠습니까? (y/n)");
             String answer = keyIn.nextLine();
