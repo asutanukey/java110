@@ -5,6 +5,11 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) {
+        String[] names = new String[100];
+        String[] emails = new String[100];
+        String[] passwords = new String[100];
+        
+        int index = 0;
         
         //1)키보드 입력을 처리할 객체 준비
         Scanner keyIn = new Scanner(System.in); 
@@ -12,15 +17,15 @@ public class App {
         //2) 사용자로부터 회원 정보 입력받기
         while (true) {
             System.out.println("이름?");
-            String name = keyIn.nextLine();
+            names[index] = keyIn.nextLine();
             
             System.out.println("이메일?");
-            String email = keyIn.nextLine();
+            emails[index] = keyIn.nextLine();
             
             System.out.println("암호?");
-            String password = keyIn.nextLine();
+            passwords[index] = keyIn.nextLine();
             
-            System.out.printf("%s, %s, %s\n",name,email,password);
+            index++;
             
             System.out.println("계속하시겠습니까? (y/n)");
             String answer = keyIn.nextLine();
@@ -28,5 +33,10 @@ public class App {
                 break;
         }
         
+        for (int i = 0; i < index; i++)
+        System.out.printf("%s, %s, %s\n",names[index],emails[index],passwords[index]);
+       
+        keyIn.close();
     }
+    
 }
