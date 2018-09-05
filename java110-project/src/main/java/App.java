@@ -63,9 +63,40 @@ public class App {
         }
     }
     
-        static Member[] members = new Member[100];
+    static class Teacher extends Member {
+        protected String tel;
+        protected int pay;
+        protected String subject;
         
-        static int index = 0;
+        
+        public String getTel() {
+            return tel;
+        }
+        public void setTel(String tel) {
+            this.tel = tel;
+        }
+        public int getPay() {
+            return pay;
+        }
+        public void setPay(int pay) {
+            this.pay = pay;
+        }
+        public String getSubject() {
+            return subject;
+        }
+        public void setSubject(String subject) {
+            this.subject = subject;
+        }
+        
+        
+    }
+    
+    
+        static Student[] students = new Student[100];
+        static Teacher[] teachers = new Teacher[100];
+        
+        static int studentIndex = 0;
+        static int teacherIndex = 0;
         
         //1)키보드 입력을 처리할 객체 준비
         static Scanner keyIn = new Scanner(System.in); 
@@ -76,6 +107,8 @@ public class App {
             String menu = promptMenu();
             if (menu.equals("1")) {
                 serviceStudentMenu();
+            }else if (menu.equals("1")) {
+                serviceTeacherMenu();
             }else {
                 System.out.println("사요나라");
                 break;
@@ -93,9 +126,25 @@ public class App {
                 System.out.println("학생 관리>");
                 String command = keyIn.nextLine();
                 if (command.equals("list")) {
-                    printMembers();
+                    printStudents();
                 }else if (command.equals("add")) {
-                    inputMembers();
+                    inputStudents();
+                }else if (command.equals("quit")) {
+                    break;
+                }else {
+                    System.out.println("유효하지 않은 명령입니다");
+                }                
+        }
+    }
+    
+    private static void serviceTeacherMenu() {
+        while (true) {
+                System.out.println("강사 관리>");
+                String command = keyIn.nextLine();
+                if (command.equals("list")) {
+                    printStudents();
+                }else if (command.equals("add")) {
+                    inputStudents();
                 }else if (command.equals("quit")) {
                     break;
                 }else {
@@ -137,17 +186,44 @@ public class App {
 //        }
     }
     
-    static void printMembers() {
-        for (int i = 0; i < index; i++)
+    static void printStudents() {
+        int count = 0;
+        for (Student s : students) {
+            if (count++==studentIndex)
+                break;
+            System.out.printf("%s, %s, %s\n"
+                    ,s.getName()
+                    ,s.getEmail()
+                    ,s.getPassword()
+                    ,s.getSchool()
+                    ,s.isWorking()
+                    ,s.getTel());
+        }
+/*        for (int i = 0; i < index; i++)
         System.out.printf("%s, %s, %s\n",members[i].getName(),members[i].getEmail(),members[i].getPassword());
-
+*/
     }
     
-    static void inputMembers() {
+    static void printTeacher() {
+        int count = 0;
+        for (Teacher s : teachers) {
+            if (count++==teacherIndex)
+                break;
+            System.out.printf("%s, %s, %s\n"
+                    ,s.getName()
+                    ,s.getEmail()
+                    ,s.getPassword()
+                    ,s.getTel()
+                    ,s.getPay()
+                    ,s.getSubject());
+        }
+    }
+    
+    static void inputStudents() {
         //2) 사용자로부터 회원 정보 입력받기
         while (true) {
             //members[index] = new Member();
-            Member m = new Member();
+            Student m = new Student();
             
             System.out.println("이름?");
             m.setName(keyIn.nextLine());
@@ -158,7 +234,16 @@ public class App {
             System.out.println("암호?");
             m.setPassword(keyIn.nextLine());
             
-            members[index++] = m;
+            System.out.println("최종학력?");
+            m.setSchool(keyIn.nextLine());
+            
+            System.out.println("재직여부?(true/false)");
+            m.setWorking(Boolean.parseBoolean(keyIn.nextLine()));
+            
+            System.out.println("전화번호?");
+            m.setTel(keyIn.nextLine());
+            
+            students[studentIndex++] = m;
             
             //index++;
             
@@ -167,5 +252,40 @@ public class App {
             if(answer.toLowerCase().equals("n"))
                 break;
         }
-    }
+    }//inputStudent 메서드
+    
+    static void inputTeachers() {
+        //2) 사용자로부터 회원 정보 입력받기
+        while (true) {
+            //members[index] = new Member();
+            Teacher m = new Teacher();
+            
+            System.out.println("이름?");
+            m.setName(keyIn.nextLine());
+            
+            System.out.println("이메일?");
+            m.setEmail(keyIn.nextLine());
+            
+            System.out.println("암호?");
+            m.setPassword(keyIn.nextLine());
+            
+            System.out.println("전화번호?");
+            m.setTel(keyIn.nextLine());
+            
+            System.out.println("시급?");
+            m.setPay(Integer.parseInt(keyIn.nextLine()));
+            
+            System.out.println("강의과목?(예 : Java,C,C++");
+            m.setSubject(keyIn.nextLine());
+            
+            teachers[teacherIndex++] = m;
+            
+            //index++;
+            
+            System.out.println("계속하시겠습니까? (y/n)");
+            String answer = keyIn.nextLine();
+            if(answer.toLowerCase().equals("n"))
+                break;
+        }
+    }//inputStudent 메서드
 }
