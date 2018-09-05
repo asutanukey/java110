@@ -27,7 +27,7 @@ public class App {
                 ManagerController.serviceManagerMenu();
                 
             } else if (menu.equals("0")){
-                System.out.println("¾È³çÈ÷ °¡¼¼¿ä!");
+                System.out.println("ì•ˆë…•ížˆ ê°€ì„¸ìš”!");
                 break;
             }
         }
@@ -36,14 +36,14 @@ public class App {
     }
 
     private static String promptMenu() {
-        System.out.println("[¸Þ´º]");
-        System.out.println("1.ÇÐ»ý °ü¸®");
-        System.out.println("2.°­»ç °ü¸®");
-        System.out.println("3.¸Å´ÏÀú °ü¸®");
-        System.out.println("0.Á¾·á");
+        System.out.println("[ë©”ë‰´]");
+        System.out.println("1.í•™ìƒ ê´€ë¦¬");
+        System.out.println("2.ê°•ì‚¬ ê´€ë¦¬");
+        System.out.println("3.ë§¤ë‹ˆì € ê´€ë¦¬");
+        System.out.println("0.ì¢…ë£Œ");
         
         while (true) {
-            System.out.print("¸Þ´º ¹øÈ£> ");
+            System.out.print("ë©”ë‰´ ë²ˆí˜¸> ");
             
             String menu = keyIn.nextLine();
             
@@ -54,8 +54,30 @@ public class App {
             case "0":
                 return menu;
             default:
-                System.out.println("¸Þ´º ¹øÈ£°¡ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.");
+                System.out.println("ë©”ë‰´ ë²ˆí˜¸ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,44 +2,16 @@ package bitcamp.java110.cms.control;
 
 import java.util.Scanner;
 
-import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.dao.StudentList;
+import bitcamp.java110.cms.domain.Student;
 
 public class StudentController {
 
-    static Student[] students = new Student[5];
-    static int studentIndex = 0;
-    
     public static Scanner keyIn;
-    
-    static class Student extends Member {
-        protected String school;
-        protected boolean working;
-        protected String tel;
-        
-        public String getSchool() {
-            return school;
-        }
-        public void setSchool(String school) {
-            this.school = school;
-        }
-        public boolean isWorking() {
-            return working;
-        }
-        public void setWorking(boolean working) {
-            this.working = working;
-        }
-        public String getTel() {
-            return tel;
-        }
-        public void setTel(String tel) {
-            this.tel = tel;
-        }
-    }
-    
     
     public static void serviceStudentMenu() {
         while (true) {
-            System.out.print("ÇĞ»ı °ü¸®> ");
+            System.out.print("í•™ìƒ ê´€ë¦¬> ");
             String command = keyIn.nextLine();
             if (command.equals("list")) {
                 printStudents();
@@ -52,18 +24,16 @@ public class StudentController {
             } else if (command.equals("quit")) {
                 break;
             } else {
-                System.out.println("À¯È¿ÇÏÁö ¾Ê´Â ¸í·ÉÀÔ´Ï´Ù.");
+                System.out.println("ìœ íš¨í•˜ì§€ ì•ŠëŠ” ëª…ë ¹ì…ë‹ˆë‹¤.");
             }
         }
     }
     
     private static void printStudents() {
-        int count = 0;
-        for (Student s : students) {
-            if (count++ == studentIndex)
-                break;
+        for (int i = 0; i < StudentList.size(); i++) {
+            Student s = StudentList.get(i);
             System.out.printf("%d: %s, %s, %s, %s, %b, %s\n",
-                    count - 1,
+                    i,
                     s.getName(), 
                     s.getEmail(), 
                     s.getPassword(), 
@@ -77,99 +47,107 @@ public class StudentController {
         while (true) {
             Student m = new Student();
             
-            System.out.print("ÀÌ¸§? ");
+            System.out.print("ì´ë¦„? ");
             m.setName(keyIn.nextLine());
             
-            System.out.print("ÀÌ¸ŞÀÏ? ");
+            System.out.print("ì´ë©”ì¼? ");
             m.setEmail(keyIn.nextLine());
             
-            System.out.print("¾ÏÈ£? ");
+            System.out.print("ì•”í˜¸? ");
             m.setPassword(keyIn.nextLine());
             
-            System.out.print("ÃÖÁ¾ÇĞ·Â? ");
+            System.out.print("ìµœì¢…í•™ë ¥? ");
             m.setSchool(keyIn.nextLine());
             
-            System.out.print("ÀçÁ÷¿©ºÎ?(true/false) ");
+            System.out.print("ì¬ì§ì—¬ë¶€?(true/false) ");
             m.setWorking(Boolean.parseBoolean(keyIn.nextLine()));
             
-            System.out.print("ÀüÈ­? ");
+            System.out.print("ì „í™”? ");
             m.setTel(keyIn.nextLine());
             
+            StudentList.add(m);
             
-            if (studentIndex == students.length) {
-                increaseStorage();
-            }
-            
-            students[studentIndex++] = m;
-            
-            System.out.print("°è¼Ó ÇÏ½Ã°Ú½À´Ï±î?(Y/n) ");
+            System.out.print("ê³„ì† í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(Y/n) ");
             String answer = keyIn.nextLine();
             if (answer.toLowerCase().equals("n"))
                 break;
         }
     }
 
-    private static void increaseStorage() {
-        Student[] newList = new Student[students.length + 3];
-        for (int i = 0; i < students.length; i++) {
-            newList[i] = students[i];
-        }
-        students = newList;
-    }
-    
     private static void deleteStudent() {
-        System.out.print("»èÁ¦ÇÒ ¹øÈ£? ");
+        System.out.print("ì‚­ì œí•  ë²ˆí˜¸? ");
         int no = Integer.parseInt(keyIn.nextLine());
         
-        if (no < 0 || no >= studentIndex) {
-            System.out.println("¹«È¿ÇÑ ¹øÈ£ÀÔ´Ï´Ù.");
+        if (no < 0 || no >= StudentList.size()) {
+            System.out.println("ë¬´íš¨í•œ ë²ˆí˜¸ì…ë‹ˆë‹¤.");
             return;
         }
         
-        for (int i = no; i < studentIndex - 1; i++) {
-            students[i] = students[i + 1];
-        }
-        studentIndex--;
+        StudentList.remove(no);
         
-        System.out.println("»èÁ¦ÇÏ¿´½À´Ï´Ù.");
+        System.out.println("ì‚­ì œí•˜ì˜€ìŠµë‹ˆë‹¤.");
     }
     
     private static void detailStudent() {
-        System.out.print("Á¶È¸ÇÒ ¹øÈ£? ");
+        System.out.print("ì¡°íšŒí•  ë²ˆí˜¸? ");
         int no = Integer.parseInt(keyIn.nextLine());
         
-        if (no < 0 || no >= studentIndex) {
-            System.out.println("¹«È¿ÇÑ ¹øÈ£ÀÔ´Ï´Ù.");
+        if (no < 0 || no >= StudentList.size()) {
+            System.out.println("ë¬´íš¨í•œ ë²ˆí˜¸ì…ë‹ˆë‹¤.");
             return;
         }
         
-        System.out.printf("ÀÌ¸§: %s\n", students[no].getName());
-        System.out.printf("ÀÌ¸ŞÀÏ: %s\n", students[no].getEmail());
-        System.out.printf("¾ÏÈ£: %s\n", students[no].getPassword());
-        System.out.printf("ÃÖÁ¾ÇĞ·Â: %s\n", students[no].getSchool());
-        System.out.printf("ÀüÈ­: %s\n", students[no].getTel());
-        System.out.printf("ÀçÁ÷¿©ºÎ: %b\n", students[no].isWorking());
+        Student student = StudentList.get(no);
+        
+        System.out.printf("ì´ë¦„: %s\n", student.getName());
+        System.out.printf("ì´ë©”ì¼: %s\n", student.getEmail());
+        System.out.printf("ì•”í˜¸: %s\n", student.getPassword());
+        System.out.printf("ìµœì¢…í•™ë ¥: %s\n", student.getSchool());
+        System.out.printf("ì „í™”: %s\n", student.getTel());
+        System.out.printf("ì¬ì§ì—¬ë¶€: %b\n", student.isWorking());
     }
     
     static {
         Student s = new Student();
         s.setName("a");
-        students[studentIndex++] = s;
+        StudentList.add(s);
         
         s = new Student();
         s.setName("b");
-        students[studentIndex++] = s;
+        StudentList.add(s);
         
         s = new Student();
         s.setName("c");
-        students[studentIndex++] = s;
+        StudentList.add(s);
         
         s = new Student();
         s.setName("d");
-        students[studentIndex++] = s;
+        StudentList.add(s);
         
         s = new Student();
         s.setName("e");
-        students[studentIndex++] = s;
+        StudentList.add(s);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

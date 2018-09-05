@@ -32,7 +32,7 @@ public class ManagerController {
     
     public static void serviceManagerMenu() {
         while (true) {
-            System.out.print("¸Å´ÏÀú °ü¸®> ");
+            System.out.print("ë§¤ë‹ˆì € ê´€ë¦¬> ");
             String command = keyIn.nextLine();
             if (command.equals("list")) {
                 printManagers();
@@ -45,7 +45,7 @@ public class ManagerController {
             } else if (command.equals("quit")) {
                 break;
             } else {
-                System.out.println("À¯È¿ÇÏÁö ¾Ê´Â ¸í·ÉÀÔ´Ï´Ù.");
+                System.out.println("ìœ íš¨í•˜ì§€ ì•ŠëŠ” ëª…ë ¹ì…ë‹ˆë‹¤.");
             }
         }
     }
@@ -68,19 +68,19 @@ public class ManagerController {
         while (true) {
             Manager m = new Manager();
             
-            System.out.print("ÀÌ¸§? ");
+            System.out.print("ì´ë¦„? ");
             m.setName(keyIn.nextLine());
             
-            System.out.print("ÀÌ¸ŞÀÏ? ");
+            System.out.print("ì´ë©”ì¼? ");
             m.setEmail(keyIn.nextLine());
             
-            System.out.print("¾ÏÈ£? ");
+            System.out.print("ì•”í˜¸? ");
             m.setPassword(keyIn.nextLine());
             
-            System.out.print("ÀüÈ­? ");
+            System.out.print("ì „í™”? ");
             m.setTel(keyIn.nextLine());
             
-            System.out.print("Á÷À§? ");
+            System.out.print("ì§ìœ„? ");
             m.setPosition(keyIn.nextLine());
             
             if (managerIndex == managers.length) {
@@ -89,7 +89,7 @@ public class ManagerController {
             
             managers[managerIndex++] = m;
             
-            System.out.print("°è¼Ó ÇÏ½Ã°Ú½À´Ï±î?(Y/n) ");
+            System.out.print("ê³„ì† í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(Y/n) ");
             String answer = keyIn.nextLine();
             if (answer.toLowerCase().equals("n"))
                 break;
@@ -105,11 +105,11 @@ public class ManagerController {
     }
     
     private static void deleteManager() {
-        System.out.print("»èÁ¦ÇÒ ¹øÈ£? ");
+        System.out.print("ì‚­ì œí•  ë²ˆí˜¸? ");
         int no = Integer.parseInt(keyIn.nextLine());
         
         if (no < 0 || no >= managerIndex) {
-            System.out.println("¹«È¿ÇÑ ¹øÈ£ÀÔ´Ï´Ù.");
+            System.out.println("ë¬´íš¨í•œ ë²ˆí˜¸ì…ë‹ˆë‹¤.");
             return;
         }
         
@@ -118,22 +118,22 @@ public class ManagerController {
         }
         managerIndex--;
         
-        System.out.println("»èÁ¦ÇÏ¿´½À´Ï´Ù.");
+        System.out.println("ì‚­ì œí•˜ì˜€ìŠµë‹ˆë‹¤.");
     }
     
     private static void detailManager() {
-        System.out.print("Á¶È¸ÇÒ ¹øÈ£? ");
+        System.out.print("ì¡°íšŒí•  ë²ˆí˜¸? ");
         int no = Integer.parseInt(keyIn.nextLine());
         
         if (no < 0 || no >= managerIndex) {
-            System.out.println("¹«È¿ÇÑ ¹øÈ£ÀÔ´Ï´Ù.");
+            System.out.println("ë¬´íš¨í•œ ë²ˆí˜¸ì…ë‹ˆë‹¤.");
             return;
         }
         
-        System.out.printf("ÀÌ¸§: %s\n", managers[no].getName());
-        System.out.printf("ÀÌ¸ŞÀÏ: %s\n", managers[no].getEmail());
-        System.out.printf("¾ÏÈ£: %s\n", managers[no].getPassword());
-        System.out.printf("Á÷À§: %s\n", managers[no].getPosition());
-        System.out.printf("ÀüÈ­: %s\n", managers[no].getTel());
+        System.out.printf("ì´ë¦„: %s\n", managers[no].getName());
+        System.out.printf("ì´ë©”ì¼: %s\n", managers[no].getEmail());
+        System.out.printf("ì•”í˜¸: %s\n", managers[no].getPassword());
+        System.out.printf("ì§ìœ„: %s\n", managers[no].getPosition());
+        System.out.printf("ì „í™”: %s\n", managers[no].getTel());
     }
 }

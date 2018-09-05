@@ -38,7 +38,7 @@ public class TeacherController {
     
     public static void serviceTeacherMenu() {
         while (true) {
-            System.out.print("°­»ç °ü¸®> ");
+            System.out.print("ê°•ì‚¬ ê´€ë¦¬> ");
             String command = keyIn.nextLine();
             if (command.equals("list")) {
                 printTeachers();
@@ -51,7 +51,7 @@ public class TeacherController {
             } else if (command.equals("quit")) {
                 break;
             } else {
-                System.out.println("À¯È¿ÇÏÁö ¾Ê´Â ¸í·ÉÀÔ´Ï´Ù.");
+                System.out.println("ìœ íš¨í•˜ì§€ ì•ŠëŠ” ëª…ë ¹ì…ë‹ˆë‹¤.");
             }
         }
     }
@@ -75,22 +75,22 @@ public class TeacherController {
         while (true) {
             Teacher m = new Teacher();
             
-            System.out.print("ÀÌ¸§? ");
+            System.out.print("ì´ë¦„? ");
             m.setName(keyIn.nextLine());
             
-            System.out.print("ÀÌ¸ŞÀÏ? ");
+            System.out.print("ì´ë©”ì¼? ");
             m.setEmail(keyIn.nextLine());
             
-            System.out.print("¾ÏÈ£? ");
+            System.out.print("ì•”í˜¸? ");
             m.setPassword(keyIn.nextLine());
             
-            System.out.print("ÀüÈ­? ");
+            System.out.print("ì „í™”? ");
             m.setTel(keyIn.nextLine());
             
-            System.out.print("½Ã±Ş? ");
+            System.out.print("ì‹œê¸‰? ");
             m.setPay(Integer.parseInt(keyIn.nextLine()));
             
-            System.out.print("°­ÀÇ°ú¸ñ?(¿¹: ÀÚ¹Ù,C,C++) ");
+            System.out.print("ê°•ì˜ê³¼ëª©?(ì˜ˆ: ìë°”,C,C++) ");
             m.setSubjects(keyIn.nextLine());
             
             if (teacherIndex == teachers.length) {
@@ -99,7 +99,7 @@ public class TeacherController {
             
             teachers[teacherIndex++] = m;
             
-            System.out.print("°è¼Ó ÇÏ½Ã°Ú½À´Ï±î?(Y/n) ");
+            System.out.print("ê³„ì† í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(Y/n) ");
             String answer = keyIn.nextLine();
             if (answer.toLowerCase().equals("n"))
                 break;
@@ -115,11 +115,11 @@ public class TeacherController {
     }
     
     private static void deleteTeacher() {
-        System.out.print("»èÁ¦ÇÒ ¹øÈ£? ");
+        System.out.print("ì‚­ì œí•  ë²ˆí˜¸? ");
         int no = Integer.parseInt(keyIn.nextLine());
         
         if (no < 0 || no >= teacherIndex) {
-            System.out.println("¹«È¿ÇÑ ¹øÈ£ÀÔ´Ï´Ù.");
+            System.out.println("ë¬´íš¨í•œ ë²ˆí˜¸ì…ë‹ˆë‹¤.");
             return;
         }
         
@@ -128,23 +128,23 @@ public class TeacherController {
         }
         teacherIndex--;
         
-        System.out.println("»èÁ¦ÇÏ¿´½À´Ï´Ù.");
+        System.out.println("ì‚­ì œí•˜ì˜€ìŠµë‹ˆë‹¤.");
     }
     
     private static void detailTeacher() {
-        System.out.print("Á¶È¸ÇÒ ¹øÈ£? ");
+        System.out.print("ì¡°íšŒí•  ë²ˆí˜¸? ");
         int no = Integer.parseInt(keyIn.nextLine());
         
         if (no < 0 || no >= teacherIndex) {
-            System.out.println("¹«È¿ÇÑ ¹øÈ£ÀÔ´Ï´Ù.");
+            System.out.println("ë¬´íš¨í•œ ë²ˆí˜¸ì…ë‹ˆë‹¤.");
             return;
         }
         
-        System.out.printf("ÀÌ¸§: %s\n", teachers[no].getName());
-        System.out.printf("ÀÌ¸ŞÀÏ: %s\n", teachers[no].getEmail());
-        System.out.printf("¾ÏÈ£: %s\n", teachers[no].getPassword());
-        System.out.printf("ÀüÈ­: %s\n", teachers[no].getTel());
-        System.out.printf("½Ã±Ş: %d\n", teachers[no].getPay());
-        System.out.printf("°­ÀÇ°ú¸ñ: %s\n", teachers[no].getSubjects());
+        System.out.printf("ì´ë¦„: %s\n", teachers[no].getName());
+        System.out.printf("ì´ë©”ì¼: %s\n", teachers[no].getEmail());
+        System.out.printf("ì•”í˜¸: %s\n", teachers[no].getPassword());
+        System.out.printf("ì „í™”: %s\n", teachers[no].getTel());
+        System.out.printf("ì‹œê¸‰: %d\n", teachers[no].getPay());
+        System.out.printf("ê°•ì˜ê³¼ëª©: %s\n", teachers[no].getSubjects());
     }
 }
