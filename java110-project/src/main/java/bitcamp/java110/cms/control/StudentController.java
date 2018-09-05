@@ -42,6 +42,10 @@ public class StudentController {
                 printStudents();
             }else if (command.equals("add")) {
                 inputStudents();
+            }else if (command.equals("delete")) {
+                deleteStudents();
+            }else if (command.equals("detail")) {
+                detailStudent();
             }else if (command.equals("quit")) {
                 break;
             }else {
@@ -91,6 +95,14 @@ public class StudentController {
 
             System.out.println("전화번호?");
             m.setTel(keyIn.nextLine());
+            
+            if (studentIndex == students.length) {
+                Student[] newList = new Student[students.length+3];
+                for (int i = 0; i<students.length;i++) {
+                    newList[i] = students[i];
+                }
+                students = newList;
+            }
 
             students[studentIndex++] = m;
 
@@ -102,5 +114,95 @@ public class StudentController {
                 break;
         }
     }//inputStudent 메서드
+    
+    private static void deleteStudents() {
+        System.out.print("삭제할 번호?");
+        int no = Integer.parseInt(keyIn.nextLine());
+        
+        if (no < 0 || no >=studentIndex) {
+            System.out.println("무효한 번호 입니다.");
+        }
+        for (int i = no; i < studentIndex - 1; i++) {
+            students[i] = students[i + 1];
+        }
+        studentIndex--;
+        
+        System.out.println("삭제 하였습니다");
+    }
+    
+    private static void detailStudent() {
+        System.out.print("조회할 번호?");
+        int no = Integer.parseInt(keyIn.nextLine());
+        
+        if (no < 0 || no >=studentIndex) {
+            System.out.println("무효한 번호 입니다.");
+        }
+        for (int i = no; i < studentIndex - 1; i++) {
+            students[i] = students[i + 1];
+        }
+        System.out.printf("이름: %s\n",students[no].getName());
+        System.out.printf("이메일: %s\n",students[no].getEmail());
+        System.out.printf("암호: %s\n",students[no].getPassword());
+        System.out.printf("최종학력: %s\n",students[no].getSchool());
+        System.out.printf("전화: %s\n",students[no].getTel());
+        System.out.printf("재직여부: %s\n",students[no].isWorking());
+    }
+    
+    static {
+        Student s = new Student();
+        s.setName("a");
+        students[studentIndex++] = s;
+        
+        s = new Student();
+        s.setName("a");
+        students[studentIndex++] = s;
+
+        s = new Student();
+        s.setName("a");
+        students[studentIndex++] = s;
+        
+        s = new Student();
+        s.setName("a");
+        students[studentIndex++] = s;
+        
+        s = new Student();
+        s.setName("a");
+        students[studentIndex++] = s;
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
