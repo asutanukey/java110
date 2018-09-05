@@ -38,6 +38,31 @@ public class App {
         
     }
     
+    static class Student extends Member {
+        String school;
+        boolean working;
+        String tel;
+        
+        public String getSchool() {
+            return school;
+        }
+        public void setSchool(String school) {
+            this.school = school;
+        }
+        public boolean isWorking() {
+            return working;
+        }
+        public void setWorking(boolean working) {
+            this.working = working;
+        }
+        public String getTel() {
+            return tel;
+        }
+        public void setTel(String tel) {
+            this.tel = tel;
+        }
+    }
+    
         static Member[] members = new Member[100];
         
         static int index = 0;
@@ -46,15 +71,70 @@ public class App {
         static Scanner keyIn = new Scanner(System.in); 
     
     public static void main(String[] args) {
-
-        inputMembers();
         
-        printMembers();
+        while (true ) {
+            String menu = promptMenu();
+            if (menu.equals("1")) {
+                serviceStudentMenu();
+            }else {
+                System.out.println("사요나라");
+                break;
+            }
+        }
         
         keyIn.close();
 
         
 
+    }
+
+    private static void serviceStudentMenu() {
+        while (true) {
+                System.out.println("학생 관리>");
+                String command = keyIn.nextLine();
+                if (command.equals("list")) {
+                    printMembers();
+                }else if (command.equals("add")) {
+                    inputMembers();
+                }else if (command.equals("quit")) {
+                    break;
+                }else {
+                    System.out.println("유효하지 않은 명령입니다");
+                }                
+        }
+    }
+
+    private static String promptMenu() {
+        System.out.println("[메뉴]");
+        System.out.println("1. 학생 관리");
+        System.out.println("2. 강사 관리");
+        System.out.println("3. 매니저 관리");
+        System.out.println("0. 종료");
+        
+        while (true) {
+            System.out.print("메뉴 번호> ");
+            
+            String menu = keyIn.nextLine();
+            System.out.println(menu);
+            
+            switch (menu) {
+            case "1":
+            case "2":
+            case "3":
+            case "0":
+                return menu;
+            default:
+                System.out.println("메뉴 번호가 유효하지 않습니다");
+            }            
+        }
+        
+//        if (menu.equals("1")) {
+//            inputMembers();
+//            
+//            printMembers();            
+//        }else {
+//            System.out.println("메뉴 번호가 유효하지 않습니다");
+//        }
     }
     
     static void printMembers() {
