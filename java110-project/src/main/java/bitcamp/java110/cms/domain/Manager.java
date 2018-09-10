@@ -17,3 +17,4 @@ public class Manager extends Member {
         this.tel = tel;
     }
 }
+
