@@ -11,8 +11,9 @@ import bitcamp.java110.cms.domain.Student;
 @Component
 public class StudentDetailController {
     
-    @Autowired
     StudentDao studentDao;
+    
+    @Autowired
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
     }

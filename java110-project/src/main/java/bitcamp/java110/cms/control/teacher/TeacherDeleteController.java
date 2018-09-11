@@ -10,21 +10,22 @@ import bitcamp.java110.cms.dao.TeacherDao;
 @Component
 public class TeacherDeleteController {
     
-    @Autowired
     TeacherDao teacherDao;
+    
+    @Autowired
     public void setTeacherDao(TeacherDao teacherDao) {
         this.teacherDao = teacherDao;
     }
     
     @RequestMapping("teacher/delete")
     public void delete(Scanner keyIn) {
-        System.out.print("삭제할 선생님의 이메일? ");
+        System.out.print("삭제할 강사의 이메일? ");
         String email = keyIn.nextLine();
         
         if (teacherDao.delete(email) > 0) {
             System.out.println("삭제하였습니다.");
         } else {
-            System.out.println("이메일에 해당하는 선생님이 없습니다.");
+            System.out.println("이메일에 해당하는 강사가 없습니다.");
         }
     }
 }

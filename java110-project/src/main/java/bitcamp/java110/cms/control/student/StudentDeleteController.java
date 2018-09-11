@@ -10,8 +10,9 @@ import bitcamp.java110.cms.dao.StudentDao;
 @Component
 public class StudentDeleteController {
     
-    @Autowired
     StudentDao studentDao;
+    
+    @Autowired
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
     }

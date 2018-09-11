@@ -12,8 +12,9 @@ import bitcamp.java110.cms.domain.Teacher;
 @Component
 public class TeacherListController {
     
-    @Autowired
     TeacherDao teacherDao;
+    
+    @Autowired
     public void setTeacherDao(TeacherDao teacherDao) {
         this.teacherDao = teacherDao;
     }

@@ -11,8 +11,9 @@ import bitcamp.java110.cms.domain.Teacher;
 @Component
 public class TeacherAddController {
     
-    @Autowired
     TeacherDao teacherDao;
+    
+    @Autowired
     public void setTeacherDao(TeacherDao teacherDao) {
         this.teacherDao = teacherDao;
     }
@@ -40,10 +41,10 @@ public class TeacherAddController {
             System.out.print("강의과목?(예: 자바,C,C++) ");
             m.setSubjects(keyIn.nextLine());
             
-            if(teacherDao.insert(m)>0) {
+            if (teacherDao.insert(m) > 0) {
                 System.out.println("저장하였습니다.");
             } else {
-                System.out.println("같은 이메일의 선생님이 존재합니다.");
+                System.out.println("같은 이메일의 강사가 존재합니다.");
             }
             
             System.out.print("계속 하시겠습니까?(Y/n) ");
@@ -52,5 +53,4 @@ public class TeacherAddController {
                 break;
         }
     }
-
 }

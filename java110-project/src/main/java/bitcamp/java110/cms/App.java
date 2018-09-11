@@ -6,7 +6,7 @@ import bitcamp.java110.cms.context.RequestMappingHandlerMapping;
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping.RequestMappingHandler;
 
 public class App {
-   
+    
     static Scanner keyIn = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception {

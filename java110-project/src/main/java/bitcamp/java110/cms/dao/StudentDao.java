@@ -13,7 +13,7 @@ public class StudentDao {
     
     public int insert(Student student) {
         for (Student item : list) {
-            if(item.getEmail().equals(student.getEmail())) {
+            if (item.getEmail().equals(student.getEmail())) {
                 return 0;
             }
         }
@@ -21,13 +21,13 @@ public class StudentDao {
         return 1;
     }
     
-    public List<Student> findAll(){
+    public List<Student> findAll() {
         return list;
     }
     
     public Student findByEmail(String email) {
         for (Student item : list) {
-            if(item.getEmail().equals(email)) {
+            if (item.getEmail().equals(email)) {
                 return item;
             }
         }
@@ -36,7 +36,7 @@ public class StudentDao {
     
     public int delete(String email) {
         for (Student item : list) {
-            if(item.getEmail().equals(email)) {
+            if (item.getEmail().equals(email)) {
                 list.remove(item);
                 return 1;
             }
@@ -44,4 +44,11 @@ public class StudentDao {
         return 0;
     }
 }
+
+
+
+
+
+
+
 
