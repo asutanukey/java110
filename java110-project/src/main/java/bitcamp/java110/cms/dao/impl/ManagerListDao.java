@@ -1,13 +1,13 @@
-package bitcamp.java110.cms.dao;
+package bitcamp.java110.cms.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import bitcamp.java110.cms.annotation.Component;
+import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.domain.Manager;
 
-@Component
-public class ManagerListDao {
+//@Component
+public class ManagerListDao implements ManagerDao {
     private List<Manager> list = new ArrayList<>();
     
     public int insert(Manager manager) {

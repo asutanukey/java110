@@ -1,4 +1,4 @@
-package bitcamp.java110.cms.dao;
+package bitcamp.java110.cms.dao.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,21 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bitcamp.java110.cms.annotation.Component;
+import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
 @Component
 public class StudentFileDao implements StudentDao {
-
+    
     private List<Student> list = new ArrayList<>();
     
     public StudentFileDao() {
         File dataFile = new File("data/student.dat");
-        try (BufferedReader in = new BufferedReader(new FileReader(dataFile));)
-        {
+        try (
+            BufferedReader in = 
+                new BufferedReader(new FileReader(dataFile))
+        ){
             while (true) {
                 String line = in.readLine();
-                if(line == null)break;
-                String[]values = line.split(",");
+                if (line == null)
+                    break;
+                String[] values = line.split(",");
                 
                 Student s = new Student();
                 s.setEmail(values[0]);
@@ -35,25 +39,29 @@ public class StudentFileDao implements StudentDao {
                 
                 list.add(s);
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    public void save() {
+    private void save() {
         File dataFile = new File("data/student.dat");
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(dataFile)))
-        {
-            for(Student s : list) {
-                out.write(String.format("%s,%s,%s,%s,%s,%b\n"
-                ,s.getEmail()
-                ,s.getName()
-                ,s.getPassword()
-                ,s.getSchool()
-                ,s.getTel()
-                ,s.isWorking()));
+        try (
+            BufferedWriter out = 
+                new BufferedWriter(new FileWriter(dataFile))
+        ){
+            for (Student s : list) {
+                out.write(
+                    String.format("%s,%s,%s,%s,%s,%b\n", 
+                        s.getEmail(),
+                        s.getName(),
+                        s.getPassword(),
+                        s.getSchool(),
+                        s.getTel(),
+                        s.isWorking()));
             }
-        }catch(Exception e) {
+            out.flush();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -86,10 +94,10 @@ public class StudentFileDao implements StudentDao {
         for (Student item : list) {
             if (item.getEmail().equals(email)) {
                 list.remove(item);
-                save();
                 return 1;
             }
         }
+        save();
         return 0;
     }
 }
