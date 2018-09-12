@@ -54,10 +54,20 @@ public class TeacherFile2Dao implements TeacherDao {
             e.printStackTrace();
         }
     }
-    public int insert(Teacher teacher) {
+    public int insert(Teacher teacher) 
+            throws MandatoryValueDaoException, DuplicationDaoException {
+        if (teacher.getName().length() == 0 ||
+            teacher.getEmail().length() == 0 ||
+            teacher.getPassword().length() == 0 ) {
+
+            // 호출자에게 예외 정보를 만들어 던진다.
+            throw new MandatoryValueDaoException("필수 입력 항목이 비어있습니다.");
+        }
         for (Teacher item : list) {
             if (item.getEmail().equals(teacher.getEmail())) {
-                return 0;
+
+                // 호출자에게 예외 정보를 만들어 던진다.
+                throw new DuplicationDaoException("이미 존재하는 이메일입니다.");
             }
         }
         list.add(teacher);

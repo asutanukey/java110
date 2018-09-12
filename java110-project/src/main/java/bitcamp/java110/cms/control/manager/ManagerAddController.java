@@ -6,6 +6,8 @@ import bitcamp.java110.cms.annotation.Autowired;
 import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.dao.ManagerDao;
+import bitcamp.java110.cms.dao.impl.DuplicationDaoException;
+import bitcamp.java110.cms.dao.impl.MandatoryValueDaoException;
 import bitcamp.java110.cms.domain.Manager;
 
 @Component
@@ -38,10 +40,13 @@ public class ManagerAddController {
             System.out.print("직위? ");
             m.setPosition(keyIn.nextLine());
             
-            if (managerDao.insert(m) > 0) {
-                System.out.println("저장하였습니다.");
-            } else {
-                System.out.println("같은 이메일의 매니저가 존재합니다.");
+            try {
+                managerDao.insert(m);
+                System.out.println("저장하였습니다.");                
+            }catch(MandatoryValueDaoException e){
+                System.out.println("필수 입력 사항이 누락되었습니다.");
+            }catch(DuplicationDaoException e) {
+                System.out.println("이미 존재하는 이메일입니다.");
             }
             
             System.out.print("계속 하시겠습니까?(Y/n) ");
