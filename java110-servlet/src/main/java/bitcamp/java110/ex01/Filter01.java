@@ -1,7 +1,7 @@
 // 필터 만들기
 // - javax.servlet.Filter 인터페이스 구현
 //
-package main.java.bitcamp.java110.ex01;
+package bitcamp.java110.ex01;
 
 import java.io.IOException;
 
