@@ -13,6 +13,7 @@ import bitcamp.java110.cms.util.DataSource;
 public class ContextLoaderListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        System.out.println("ContextLoaderListener.contextInitialized() 실행!");
         
         ServletContext sc = sce.getServletContext();
 
@@ -41,8 +42,7 @@ public class ContextLoaderListener implements ServletContextListener {
             sc.setAttribute("teacherDao", teacherDao);
             
         } catch (Exception e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
-        
     }
 }
