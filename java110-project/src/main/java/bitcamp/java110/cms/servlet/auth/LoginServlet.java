@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.dao.StudentDao;
@@ -125,9 +126,14 @@ public class LoginServlet extends HttpServlet {
             loginUser = teacherDao.findByEmailPassword(email, password);
         }
         
+        HttpSession session = request.getSession();
         if (loginUser != null) {
+            session.setAttribute("loginUser", loginUser);
+            
             response.sendRedirect("../student/list");
         } else {
+            session.invalidate();
+            
             response.sendRedirect("login");
         }
     }
