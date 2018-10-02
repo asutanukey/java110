@@ -45,17 +45,17 @@ public class ManagerAddServlet extends HttpServlet {
             response.sendRedirect("list");
             
         } catch(Exception e) {
-            //오류내용을 처리하는 서블릿으로 실행을 위임한다.
+            // 오류 내용을 처리하는 서블릿으로 실행을 위임한다.
             RequestDispatcher rd = request.getRequestDispatcher("/error");
             
-            //위인하기 전에 작업을수행하는데 필요한 정보를
-            //ServletRequest 보관소에 담아 전달한다.
+            // 위임하기 전에 작업을 수행하는데 필요한 정보를 
+            // ServletRequest 보관소에 담아 전달한다.
             request.setAttribute("error", e);
-            request.setAttribute("message", "매니저 등록 오류");
-            request.setAttribute("refresh", "list");
+            request.setAttribute("message", "매니저 등록 오류!");
+            request.setAttribute("refresh", "3;url=list");
             
+            // 작업을 위임한다.
             rd.forward(request, response);
-            
         }
         
     }
