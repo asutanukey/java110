@@ -9,6 +9,10 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
+// https://mvnrepository.com/artifact/javax.servlet/jstl
+compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+
     // Servlet API 라이브러리
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     

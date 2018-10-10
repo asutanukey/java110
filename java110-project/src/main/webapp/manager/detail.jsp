@@ -1,4 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Manager"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -27,7 +26,7 @@ table, th, td {
 <tr><th>이름</th><td>${manager.name}</td></tr>
 <tr><th>이메일</th><td>${manager.email}</td></tr>
 <tr><th>암호</th><td>${manager.password}</td></tr>
-<tr><th>전화</th><td>${manager.tel}</td></tr>
+<tr><th>전화</th><td>${manager.tel}%></td></tr>
 <tr><th>직위</th><td>${manager.position}</td></tr>
 </tbody>
 </table>

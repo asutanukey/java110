@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="bitcamp.java110.Member"%>
+<%@page import="java.util.HashMap"%>
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +17,7 @@ Member member = new Member();
 member.setNo(100);
 member.setName("홍길동");
 member.setEmail("hong@test.com");
-member.setTel("111-2222");
+member.setTel("1111-2222");
 
 pageContext.setAttribute("member", member);
 %>
@@ -22,5 +26,18 @@ ${member.no}<br>
 ${member["no"]}<br>
 ${member['no']}<br>
 ${member.getNo()}<br>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
