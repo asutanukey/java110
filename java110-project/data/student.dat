@@ -1,2 +1,4 @@
-q@q.q,q,9999,ok,9999-9999,true
-n@n.n,n,6666,no,8888-4321,false
+s1,s1,1111,s1,s1,true
+s2,s2,s2,s2,s2,false
+s3,s3,s3,s3,s3,true
+s4,s4,s4,s4,s4,false
