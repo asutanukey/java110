@@ -10,14 +10,13 @@ import bitcamp.java110.cms.dao.TeacherDao;
 import bitcamp.java110.cms.domain.Teacher;
 
 public class TeacherMysqlDao implements TeacherDao {
-    
+
     SqlSessionFactory sqlSessionFactory;
     
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
-    
-    @Override
+
     public int insert(Teacher teacher) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession(true)){
             return sqlSession.insert(
@@ -25,15 +24,13 @@ public class TeacherMysqlDao implements TeacherDao {
         }
     }
     
-    @Override
     public List<Teacher> findAll(Map<String,Object> params) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()){
-           return sqlSession.selectList(
-                   "bitcamp.java110.cms.dao.TeacherDao.findAll", params); 
-        }
+            return sqlSession.selectList(
+                    "bitcamp.java110.cms.dao.TeacherDao.findAll", params); 
+         }
     }
     
-    @Override
     public Teacher findByEmail(String email) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()){
             return sqlSession.selectOne(
@@ -41,7 +38,6 @@ public class TeacherMysqlDao implements TeacherDao {
         }
     }
     
-    @Override
     public Teacher findByNo(int no) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()){
             return sqlSession.selectOne(
@@ -49,7 +45,6 @@ public class TeacherMysqlDao implements TeacherDao {
         }
     }
     
-    @Override
     public int delete(int no) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession(true)){
             return sqlSession.delete(
@@ -65,23 +60,7 @@ public class TeacherMysqlDao implements TeacherDao {
                 params); 
         }
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

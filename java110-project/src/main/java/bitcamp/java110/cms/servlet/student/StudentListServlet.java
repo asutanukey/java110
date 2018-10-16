@@ -22,7 +22,7 @@ public class StudentListServlet extends HttpServlet {
             HttpServletRequest request, 
             HttpServletResponse response) 
             throws ServletException, IOException {
-        
+
         int pageNo = 1;
         int pageSize = 3;
         

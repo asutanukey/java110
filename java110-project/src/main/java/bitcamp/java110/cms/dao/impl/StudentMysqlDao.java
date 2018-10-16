@@ -10,14 +10,13 @@ import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
 public class StudentMysqlDao implements StudentDao {
-    
+
     SqlSessionFactory sqlSessionFactory;
     
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
-    
-    @Override
+
     public int insert(Student student) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession(true)){
             return sqlSession.insert(
@@ -25,15 +24,13 @@ public class StudentMysqlDao implements StudentDao {
         }
     }
     
-    @Override
     public List<Student> findAll(Map<String,Object> params) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()){
-           return sqlSession.selectList(
-                   "bitcamp.java110.cms.dao.StudentDao.findAll", params); 
-        }
+            return sqlSession.selectList(
+                    "bitcamp.java110.cms.dao.StudentDao.findAll", params); 
+         }
     }
     
-    @Override
     public Student findByEmail(String email) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()){
             return sqlSession.selectOne(
@@ -41,7 +38,6 @@ public class StudentMysqlDao implements StudentDao {
         }
     }
     
-    @Override
     public Student findByNo(int no) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()){
             return sqlSession.selectOne(
@@ -49,7 +45,6 @@ public class StudentMysqlDao implements StudentDao {
         }
     }
     
-    @Override
     public int delete(int no) {
         try (SqlSession sqlSession = sqlSessionFactory.openSession(true)){
             return sqlSession.delete(
@@ -65,23 +60,7 @@ public class StudentMysqlDao implements StudentDao {
                 params); 
         }
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

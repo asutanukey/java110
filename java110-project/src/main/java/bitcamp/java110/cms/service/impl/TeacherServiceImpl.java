@@ -14,7 +14,7 @@ public class TeacherServiceImpl implements TeacherService {
     MemberDao memberDao;
     TeacherDao teacherDao;
     PhotoDao photoDao;
-
+    
     public void setMemberDao(MemberDao memberDao) {
         this.memberDao = memberDao;
     }
@@ -33,14 +33,13 @@ public class TeacherServiceImpl implements TeacherService {
         teacherDao.insert(teacher);
         
         if (teacher.getPhoto() != null) {
-            
+
             HashMap<String,Object> params = new HashMap<>();
             params.put("no", teacher.getNo());
             params.put("photo", teacher.getPhoto());
             
             photoDao.insert(params);
         }
-            
     }
     
     @Override
@@ -59,11 +58,11 @@ public class TeacherServiceImpl implements TeacherService {
     
     @Override
     public void delete(int no) {
-            if (teacherDao.delete(no) == 0) {
-                throw new RuntimeException("해당 번호의 데이터가 없습니다.");
-            }
-            photoDao.delete(no);
-            memberDao.delete(no);
+        if (teacherDao.delete(no) == 0) {
+            throw new RuntimeException("해당 번호의 데이터가 없습니다.");
+        }
+        photoDao.delete(no);
+        memberDao.delete(no);
     }
 }
 

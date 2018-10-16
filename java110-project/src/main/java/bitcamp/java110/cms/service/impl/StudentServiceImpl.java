@@ -29,18 +29,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void add(Student student) {
-            memberDao.insert(student);
-            studentDao.insert(student);
+        memberDao.insert(student);
+        studentDao.insert(student);
+        
+        if (student.getPhoto() != null) {
+
+            HashMap<String,Object> params = new HashMap<>();
+            params.put("no", student.getNo());
+            params.put("photo", student.getPhoto());
             
-            if (student.getPhoto() != null) {
-                
-                HashMap<String,Object> params = new HashMap<>();
-                params.put("no", student.getNo());
-                params.put("photo", student.getPhoto());
-                
-                photoDao.insert(params);
-            }
-            
+            photoDao.insert(params);
+        }
     }
     
     @Override
@@ -59,11 +58,11 @@ public class StudentServiceImpl implements StudentService {
     
     @Override
     public void delete(int no) {
-            if (studentDao.delete(no) == 0) {
-                throw new RuntimeException("해당 번호의 데이터가 없습니다.");
-            }
-            photoDao.delete(no);
-            memberDao.delete(no);
+        if (studentDao.delete(no) == 0) {
+            throw new RuntimeException("해당 번호의 데이터가 없습니다.");
+        }
+        photoDao.delete(no);
+        memberDao.delete(no);
     }
 }
 
