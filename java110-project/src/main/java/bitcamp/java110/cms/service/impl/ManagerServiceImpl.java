@@ -3,42 +3,47 @@ package bitcamp.java110.cms.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.dao.MemberDao;
 import bitcamp.java110.cms.dao.PhotoDao;
+import bitcamp.java110.cms.dao.TeacherDao;
 import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.service.ManagerService;
 
 public class ManagerServiceImpl implements ManagerService {
 
-    MemberDao memberDao;
-    ManagerDao managerDao;
-    PhotoDao photoDao;
+    SqlSessionFactory sqlSessionFactory;
 
-    public void setMemberDao(MemberDao memberDao) {
-        this.memberDao = memberDao;
-    }
-
-    public void setManagerDao(ManagerDao managerDao) {
-        this.managerDao = managerDao;
-    }
-
-    public void setPhotoDao(PhotoDao photoDao) {
-        this.photoDao = photoDao;
+    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
     }
 
     @Override
     public void add(Manager manager) {
-        memberDao.insert(manager);
-        managerDao.insert(manager);
-        
-        if (manager.getPhoto() != null) {
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MemberDao memberDao = session.getMapper(MemberDao.class);
+            ManagerDao managerDao = session.getMapper(ManagerDao.class);
+            PhotoDao photoDao = session.getMapper(PhotoDao.class);
             
-            HashMap<String,Object> params = new HashMap<>();
-            params.put("no", manager.getNo());
-            params.put("photo", manager.getPhoto());
+            memberDao.insert(manager);
+            managerDao.insert(manager);
             
-            photoDao.insert(params);
+            if (manager.getPhoto() != null) {
+                
+                HashMap<String,Object> params = new HashMap<>();
+                params.put("no", manager.getNo());
+                params.put("photo", manager.getPhoto());
+                
+                photoDao.insert(params);
+            }
+        }catch(Exception e) {
+            session.rollback();
+        }finally {
+            session.close();
         }
     }
     

@@ -1,0 +1,19 @@
+
+plugins {
+    id 'java'
+    id 'eclipse'
+}
+
+dependencies {
+    //Spring IoC 컨테이너 
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    compile group: 'org.springframework', name: 'spring-context', version: '5.1.1.RELEASE'
+
+    testCompile 'junit:junit:4.12'
+    
+}
+
+repositories {
+    mavenCentral()
+}
+
