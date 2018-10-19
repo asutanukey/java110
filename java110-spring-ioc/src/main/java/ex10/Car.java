@@ -1,20 +1,20 @@
-package ex05;
+package ex10;
 
 import java.sql.Date;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("c1")
 public class Car {
     private int no;
     private String model;
     private String maker;
     private int cc;
     private Date createdDate;
+    
+    @Autowired
     private Engine engine;
-    private CD[] cds;
-    private Set<Tire> tires;
-    private Map<String,Object> options;
     
     public Car() {
         System.out.println("Car() 호출됨!");
@@ -44,7 +44,6 @@ public class Car {
     }
 
     public void setNo(int no) {
-        System.out.println("Car.setNo()");
         this.no = no;
     }
 
@@ -53,7 +52,6 @@ public class Car {
     }
 
     public void setModel(String model) {
-        System.out.println("Car.setModel()");
         this.model = model;
     }
 
@@ -62,7 +60,6 @@ public class Car {
     }
 
     public void setMaker(String maker) {
-        System.out.println("Car.setMaker()");
         this.maker = maker;
     }
 
@@ -71,7 +68,6 @@ public class Car {
     }
 
     public void setCc(int cc) {
-        System.out.println("Car.setCc()");
         this.cc = cc;
     }
 
@@ -80,7 +76,6 @@ public class Car {
     }
 
     public void setCreatedDate(Date createdDate) {
-        System.out.println("Car.setCreatedDate()");
         this.createdDate = createdDate;
     }
     
@@ -88,47 +83,11 @@ public class Car {
         return engine;
     }
 
-    public void setEngine(Engine engine) {
-        System.out.println("Car.setEngine()");
-        this.engine = engine;
-    }
-
-    public CD[] getCds() {
-        return cds;
-    }
-
-    public void setCds(CD[] cds) {
-        System.out.println("Car.setCds()");
-        this.cds = cds;
-    }
-
-    public Set<Tire> getTires() {
-        return tires;
-    }
-
-    public void setTires(Set<Tire> tires) {
-        System.out.println("Car.setTires()");
-        this.tires = tires;
-    }
-
-    public Map<String, Object> getOptions() {
-        return options;
-    }
-
-    public void setOptions(Map<String, Object> options) {
-        System.out.println("Car.setOptions()");
-        this.options = options;
-    }
 
     @Override
     public String toString() {
         return "Car [no=" + no + ", model=" + model + ", maker=" + maker + ", cc=" + cc + ", createdDate=" + createdDate
-                + ", engine=" + engine + ", cds=" + Arrays.toString(cds) + ", tires=" + tires + ", options=" + options
-                + "]";
+                + ", engine=" + engine + "]";
     }
 
-    
-    
-    
-    
 }

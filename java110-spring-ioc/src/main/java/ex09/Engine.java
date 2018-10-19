@@ -1,5 +1,8 @@
-package ex05;
+package ex09;
 
+import org.springframework.stereotype.Component;
+
+@Component("e1")
 public class Engine {
     private String maker;
     private int valve;
@@ -20,21 +23,18 @@ public class Engine {
         return maker;
     }
     public void setMaker(String maker) {
-        System.out.println("Engine.setMaker()");
         this.maker = maker;
     }
     public int getValve() {
         return valve;
     }
     public void setValve(int valve) {
-        System.out.println("Engine.setValve()");
         this.valve = valve;
     }
     public boolean isDiesel() {
         return isDiesel;
     }
     public void setDiesel(boolean isDiesel) {
-        System.out.println("Engine.setDiesel()");
         this.isDiesel = isDiesel;
     }
 
