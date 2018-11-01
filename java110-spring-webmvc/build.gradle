@@ -11,6 +11,9 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
+    
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
 
     // Servlet API 라이브러리
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
