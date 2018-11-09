@@ -30,7 +30,7 @@ public class Servlet02 extends GenericServlet {
         // => http://localhost:8888/ex04/post.html 페이지에서 값을 입력한 후 보내기 버튼 클릭
         // 
         // 그러나 서블릿에서 값을 꺼내는 방법은 GET 요청 때와 같다.
-        //
+
         String name = req.getParameter("name");
         int age = Integer.parseInt(
                 req.getParameter("age"));
